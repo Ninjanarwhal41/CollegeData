@@ -3,9 +3,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 public static void main(String[] args) throws FileNotFoundException {
-    College harvard = new College("harvard", 4, 12343, 1234);
-    System.out.println(harvard.getTuition());
-    System.out.println(harvard.toString());
     CollegeUtility.loadFromFile("2022 US College Rankings.csv");
     while(true){
         System.out.println(" (A) Add a college\n (B) Get a college by rank\n (C) Find cheapest college\n (D) Sort and list colleges by tuition \n (E) Get the highest ranked college \n (F) Sort and list colleges by enrollment \n (G) Quit program");
@@ -50,9 +47,10 @@ public static void main(String[] args) throws FileNotFoundException {
                     System.out.println("Enrollment:" + cols.get(i).getEnrollment());
                 }
                 break;
-            case "F:":
+            case "F":
+                CollegeUtility.sortByEnrollment();
                 break;
-            case "G:":
+            case "G":
                 System.out.println("Until next time!");
                 System.exit(0);
             default:

@@ -36,23 +36,41 @@ public class CollegeUtility
     }
 
     public static void sortByTuition(){
-        College cheap =  colleges.getFirst();
-        int smallest = cheap.getTuition();
-        for(int k = 0; k < colleges.size(); k++){
-            int index = 0;
-            for(int i = 0; i < colleges.size(); i++){
-                if(colleges.get(k).getTuition() < smallest){
-                    cheap = colleges.get(i);
-                    index = i;
+        for(int i = 0; i < colleges.size(); i++){
+            int minIndex = i;
+            for(int k = i ; k < colleges.size(); k++){
+                if(colleges.get(k).getTuition() < colleges.get(minIndex).getTuition()){
+                    minIndex = k;
                 }
             }
-            colleges.set(index, colleges.get(k));
-            colleges.set(k, cheap);
-            System.out.println(colleges.get(k));
+            College temp = colleges.get(i);
+            colleges.set(i, colleges.get(minIndex));
+            colleges.set(minIndex, temp);
+        }
+        System.out.println("College sorted by Tuition");
+        for (College college : colleges) {
+            System.out.println("Name:" + college.getName() + "\nTuition:" + college.getTuition());
         }
     }
 
-    public void listByEnrollment(){
+    public static void sortByEnrollment(){
+        for(int i = 0; i < colleges.size(); i++){
+            int minIndex = i;
+            for(int k = i; k < colleges.size(); k++){
+                if(colleges.get(k).getEnrollment() < colleges.get(minIndex).getEnrollment()){
+                    minIndex = k;
+                }
+            }
+
+            College temp = colleges.get(i);
+            colleges.set(i, colleges.get(minIndex));
+            colleges.set(minIndex, temp);
+        }
+        System.out.println("College sorted by Enrollment:");
+        for (College college : colleges) {
+            System.out.println("Name: " + college.getName() + "\nEnrollment: " + college.getEnrollment());
+        }
+
 
     }
 
